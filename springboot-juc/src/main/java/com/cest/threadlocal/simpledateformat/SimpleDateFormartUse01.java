@@ -6,16 +6,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 版本1
  * 两个线程使用simpledateformat
  */
 @Slf4j
-public class SimpleDateFormartUse00 {
+public class SimpleDateFormartUse01 {
 
     public static void main(String[] args) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String date = new SimpleDateFormartUse00().date(10);
+                String date = new SimpleDateFormartUse01().date(10);
                 log.info(date);
             }
         }).start();
@@ -23,7 +24,7 @@ public class SimpleDateFormartUse00 {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String date = new SimpleDateFormartUse00().date(10000);
+                String date = new SimpleDateFormartUse01().date(10000);
                 log.info(date);
             }
         }).start();
