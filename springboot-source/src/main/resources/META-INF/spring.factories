@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationContextInitializer=com.cest.init.FirstInit,com.cest.init.SecondInit
+
+
+
