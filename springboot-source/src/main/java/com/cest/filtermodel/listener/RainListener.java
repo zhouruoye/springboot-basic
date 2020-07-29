@@ -10,7 +10,7 @@ public class RainListener implements WeatherListener{
     @Override
     public void onWeatherEvent(WeatherEvent event) {
         if(event instanceof RainEvent) {
-            log.info("下雨天:",event.getWeather());
+            log.info("下雨天:{}",event.getWeather());
         }
     }
 }

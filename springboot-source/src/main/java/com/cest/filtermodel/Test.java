@@ -9,6 +9,7 @@ import com.cest.filtermodel.listener.SnowListener;
 public class Test {
 
     public static void main(String[] args) {
+        //构造广播器
         WeatherEventMulticaster eventMulticaster = new WeatherEventMulticaster();
         RainListener rainListener = new RainListener();
         SnowListener snowListener = new SnowListener();
