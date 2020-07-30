@@ -5,14 +5,13 @@ import com.cest.filtermodel.listener.WeatherListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public abstract class AbstractEventMulticaster implements EventMulticaster{
 
     @Autowired
-    private List<WeatherListener> listenerList = new ArrayList<>();
+    private List<WeatherListener> listenerList;
 
     @Override
     public void multicastEvent(WeatherEvent event) {
