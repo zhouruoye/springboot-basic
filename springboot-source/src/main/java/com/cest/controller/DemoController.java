@@ -14,6 +14,10 @@ public class DemoController {
     @Autowired
     private TestService testService;
 
+    /**
+     * localhost:8080/demo/hello
+     * @return
+     */
     @RequestMapping("/hello")
     @ResponseBody
     public String hello() {
