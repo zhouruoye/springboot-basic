@@ -8,22 +8,47 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class VideoFactory {
 
-    //反射
-    public Video getVideo(Class c){
-        Video video = null;
-        try {
-            video = (Video) Class.forName(c.getName()).newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+    /**
+     * 优化2 - 反射
+     * 限制传参的范围 定义为当前对象的子类
+     * @param c
+     * @return
+     */
+    public Video getVideo(Class<? extends Video> c){
+        if(c != null) {
+            try {
+                return c.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
-        return video;
+        return null;
     }
 
+
     /**
+     * 优化1 - 反射
+     * @param c
+     * @return
+     */
+//    public Video getVideo(Class c){
+//        Video video = null;
+//        try {
+//            video = (Video) Class.forName(c.getName()).newInstance();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return video;
+//    }
+
+    /**
+     * 原始写法
      * 每次新增一个类型需要重新维护接口 不符合开闭原则 使用反射
      * @param type
      * @return

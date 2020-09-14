@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class JavaVideo extends Video {
+
     @Override
     public void transcribeVideo() {
         log.info("录制java视频");
     }
+
 }

@@ -3,6 +3,7 @@ package com.cest.design.ctreational.abstractfactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 抽象工厂
  * Created by cestlavie on 2019/10/16.
  */
 @Slf4j

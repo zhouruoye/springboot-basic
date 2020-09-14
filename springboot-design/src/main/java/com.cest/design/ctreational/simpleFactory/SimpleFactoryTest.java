@@ -1,6 +1,7 @@
 package com.cest.design.ctreational.simpleFactory;
 
 /**
+ * 简单工程模式
  * Created by cestlavie on 2019/10/16.
  */
 public class SimpleFactoryTest {

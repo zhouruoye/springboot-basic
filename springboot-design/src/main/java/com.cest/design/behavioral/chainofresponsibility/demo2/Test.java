@@ -7,13 +7,19 @@ public class Test {
 
     public static void main(String[] args) {
         Approver wjzhang,gyang,wslu;
+
+        //主任
         wjzhang = new Director("张无忌");
+
+        //副董事
         gyang = new VicePresident("杨过");
+
+        //董事长
         wslu = new President("陆无双");
         wjzhang.setApprover(gyang);
         gyang.setApprover(wslu);
         //创建采购单
-        PurchaseRequest pr1 = new PurchaseRequest(5000,10001,"购买倚天剑");
+        PurchaseRequest pr1 = new PurchaseRequest(50000,10001,"购买倚天剑");
         wjzhang.processRequest(pr1);
 
         PurchaseRequest pr2 = new PurchaseRequest(40000,10002,"购买《葵花宝典》");

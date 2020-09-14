@@ -3,6 +3,7 @@ package com.cest.design.behavioral.chainofresponsibility.demo2;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 董事长审批<=80000
  * Created by cestlavie on 2019/11/1.
  */
 @Slf4j
