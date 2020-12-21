@@ -13,6 +13,7 @@ public class Test {
 
         //加一个鸡排
         aBatterCake = new ChkLegDecorator(aBatterCake);
+        aBatterCake = new ChkLegDecorator(aBatterCake);
 
 
         log.info("{},销售价格为:{}",aBatterCake.getDes(),aBatterCake.cost());

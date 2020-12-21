@@ -3,7 +3,11 @@ package com.cest.design.ctreational.singleton;
 import com.cest.status.SingletonType;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * Created by cestlavie on 2019/10/15.
