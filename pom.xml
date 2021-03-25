@@ -26,6 +26,7 @@
         <module>springboot-threadbasic</module>
         <module>springboot-design</module>
         <module>springboot-error</module>
+        <module>springboot-jvm</module>
     </modules>
 
     <dependencies>
