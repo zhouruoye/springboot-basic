@@ -8,13 +8,8 @@ public class Test {
     public static void main(String[] args) {
         ABatterCake aBatterCake = new BatterCake();
         //加两个鸡蛋
-        aBatterCake = new EggDecorator(aBatterCake);
-        aBatterCake = new EggDecorator(aBatterCake);
-
         //加一个鸡排
-        aBatterCake = new ChkLegDecorator(aBatterCake);
-        aBatterCake = new ChkLegDecorator(aBatterCake);
-
+        aBatterCake = new ChkLegDecorator(new EggDecorator(new EggDecorator(aBatterCake)));
 
         log.info("{},销售价格为:{}",aBatterCake.getDes(),aBatterCake.cost());
     }
