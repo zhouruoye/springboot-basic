@@ -8,6 +8,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>springboot-juc</artifactId>
+    <artifactId>springboot-jvm</artifactId>
 
 </project>
