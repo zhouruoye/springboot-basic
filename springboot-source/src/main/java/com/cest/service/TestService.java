@@ -17,7 +17,6 @@ public class TestService implements ApplicationContextAware {
     }
 
     public String test() {
-
         System.out.println();
         Environment environment = applicationContext1.getEnvironment();
         String key1 = environment.getProperty("key4");
