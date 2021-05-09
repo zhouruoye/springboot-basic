@@ -125,6 +125,10 @@ public class Array<E> {
         return remove(size - 1);
     }
 
+     public E getLast(){
+        return get(size - 1);
+    }
+
     // 从数组中删除元素e
     public void removeElement(E e) {
         int i = find(e);
