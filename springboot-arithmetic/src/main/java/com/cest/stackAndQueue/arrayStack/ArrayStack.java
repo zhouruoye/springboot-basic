@@ -2,12 +2,16 @@ package com.cest.stackAndQueue.arrayStack;
 
 import com.cest.arrays.dynamicArray.Array;
 
-public class ArrayStack<E> implements Stack<E>{
+public class ArrayStack<E> implements Stack<E> {
 
     private Array<E> array;
 
     public ArrayStack(int capacity) {
         array = new Array<>(capacity);
+    }
+
+    public ArrayStack() {
+        array = new Array<>();
     }
 
     @Override
