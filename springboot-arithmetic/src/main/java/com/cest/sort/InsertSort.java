@@ -11,7 +11,6 @@ public class InsertSort {
         int length = insert.length;
 
         for (int i = 0; i < length; i++) {
-
         }
     }
 }

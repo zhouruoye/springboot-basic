@@ -108,7 +108,7 @@ public class Array<E> {
         }
         size--;
         //如果size只有1/2 缩容
-        if(size == getCapacity() / 2) {
+        if (size == getCapacity() / 2) {
             resize(getCapacity() / 2);
         }
 
@@ -125,8 +125,12 @@ public class Array<E> {
         return remove(size - 1);
     }
 
-     public E getLast(){
+    public E getLast() {
         return get(size - 1);
+    }
+
+    public E getFirst() {
+        return get(0);
     }
 
     // 从数组中删除元素e
