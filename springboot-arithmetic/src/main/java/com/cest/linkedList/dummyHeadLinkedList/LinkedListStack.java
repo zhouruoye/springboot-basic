@@ -2,6 +2,7 @@ package com.cest.linkedList.dummyHeadLinkedList;
 
 import com.cest.stackAndQueue.arrayStack.Stack;
 
+//操作头部元素的时间复杂度是O(1)
 public class LinkedListStack<E> implements Stack<E> {
 
     private LinkedList<E> linkedList;
