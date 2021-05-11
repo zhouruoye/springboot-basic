@@ -1,4 +1,4 @@
-package com.cest.linkedList.linkedList;
+package com.cest.linkedlist.linkedList;
 
 //链表
 public class LinkedList<E> {
@@ -30,7 +30,7 @@ public class LinkedList<E> {
     private int size;
 
     public LinkedList() {
-        nodeHeader = null;
+        nodeHeader = new Node();
         size = 0;
     }
 
@@ -44,14 +44,6 @@ public class LinkedList<E> {
         return size == 0;
     }
 
-    //添加第一个
-    public void addFirst(E e) {
-        Node node = new Node(e);
-        node.next = nodeHeader;
-        nodeHeader = node;
-        size ++;
-    }
-
     //向链表中插入元素
     public void add(int index, E e) {
 
@@ -59,27 +51,5 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("Add failed. Illegal index.");
         }
 
-        if(index == 0) {
-            addFirst(e);
-        }else {
-            //找到目标节点的前一位元素
-            Node nodeHeader = this.nodeHeader;
-
-            for (int i = 0; i < (index - 1); i++) {
-                nodeHeader = nodeHeader.next;
-            }
-
-//            Node cur = new Node(e);
-//            cur.next = nodeHeader.next;
-//            nodeHeader.next = cur;
-
-            nodeHeader.next = new Node(e,nodeHeader.next);
-        }
-
-        size ++;
-    }
-
-    public void addLast(E e) {
-        add(size,e);
     }
 }
