@@ -28,6 +28,7 @@
         <module>springboot-error</module>
         <module>springboot-jvm</module>
         <module>springboot-arithmetic</module>
+        <module>springboot-leetcode</module>
     </modules>
 
     <dependencies>
