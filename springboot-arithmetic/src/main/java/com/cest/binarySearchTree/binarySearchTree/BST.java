@@ -210,6 +210,95 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    // 寻找二分搜索树的最小元素
+    public E minimum() {
+        if(size == 0)
+            throw new IllegalArgumentException("BST is empty");
+
+        Node minimun = minimun(root);
+        return minimun.e;
+    }
+
+    public Node minimun(Node node) {
+        if(node.left == null) {
+            return node;
+        }
+
+        return minimun(node.left);
+    }
+
+    // 寻找二分搜索树的最大元素
+    public E maximum() {
+        if(size == 0)
+            throw new IllegalArgumentException("BST is empty");
+
+        Node maximun = maximun(root);
+        return maximun.e;
+    }
+
+    public Node maximun(Node node) {
+        if(node.right == null) {
+            return node;
+        }
+
+        return maximun(node.right);
+    }
+
+    //删除最小元素
+    public E removeMin() {
+        if(isEmpty()) {
+            throw new IllegalArgumentException("BST is empty");
+        }
+
+        E minimum = minimum();
+
+        Node node = removeMin(root);
+        return minimum;
+    }
+
+    //一直找最左元素
+    public Node removeMin(Node node) {
+        //如果当前节点左节点为空 那么当前节点则是最小节点 当前节点可能有右子树节点 右孩子连接到当前节点的上级节点上的左子树上
+        // 返回删除节点后新的二分搜索树的根
+        if(node.left == null) {
+            Node right = node.right;
+            node.right = null;
+            size --;
+            return right;
+        }
+
+        node.left = removeMin(node.left);
+
+        return node;
+    }
+
+    //删除最大元素
+    public E removeMax() {
+        if(isEmpty()) {
+            throw new IllegalArgumentException("BST is empty");
+        }
+
+        E maximum = maximum();
+
+        Node node = removeMax(root);
+
+        return maximum;
+    }
+
+    public Node removeMax(Node node) {
+        //终止条件
+        if(node.right == null) {
+            Node left = node.left;
+            node.left = null;
+            size --;
+            return left;
+        }
+
+        node.left = removeMax(node.right);
+
+        return node;
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
 
@@ -233,5 +322,8 @@ public class BST<E extends Comparable<E>> {
         bst.postOrder();
         System.out.println("层序遍历");
         bst.levelOrder();
+        System.out.println("求最大最小值");
+        System.out.println(bst.minimum());
+        System.out.println(bst.maximum());
     }
 }
