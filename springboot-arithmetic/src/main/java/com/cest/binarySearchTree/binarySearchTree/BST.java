@@ -77,7 +77,7 @@ public class BST<E extends Comparable<E>> {
         if(e.compareTo(node.e) < 0) {
             //node.left接住 add(node.left,e)
             node.left = add(node.left,e);
-        }else {
+        }else if(e.compareTo(node.e) > 0){
             node.right = add(node.right,e);
         }
 
@@ -299,18 +299,63 @@ public class BST<E extends Comparable<E>> {
         return node;
     }
 
+    //删除左右都有孩子的节点d 找到节点d的后继节点 则是节点d右子树的最小节点 删除最小节点 然后替换元素d
+    public void remove(E e) {
+        root = remove(root,e);
+    }
+
+    private Node remove(Node node, E e) {
+        if(node == null) {
+            return null;
+        }
+
+        if(e.compareTo(node.e) < 0) {
+            node.left = remove(node.left,e);
+            return node;
+        } else if(e.compareTo(node.e) > 0) {
+            node.right = remove(node.right,e);
+            return node;
+        } else {
+            //如果左子树为空
+            if(node.left == null) {
+                Node right = node.right;
+                node.right = null;
+                size --;
+                return right;
+            }
+
+            //如果右子树为空
+            if(node.right == null) {
+                Node left = node.left;
+                node.left = null;
+                size --;
+                return left;
+            }
+
+            //如果都不为空的情况 找到当前节点的后继节点 既找到当前节点 用这个节点顶替待删除节点的位置
+            //这里不用size--是因为removeMin里面存在size--
+            Node minimun = minimun(node.right);
+            minimun.right = removeMin(node.right);
+            minimun.left = node.left;
+            //当前目标节点左右都置空 回收
+            node.right = node.left = null;
+
+            return minimun;
+        }
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
 
         bst.add(5);
         bst.add(7);
-        bst.add(3);
-        bst.add(2);
+        bst.add(1);
+        bst.add(1);
         bst.add(1);
         bst.add(10);
         bst.add(9);
 
-        System.out.println(bst.toString());
+        bst.remove(2);
         System.out.println(1111);
 
         System.out.println(bst.contains(12));
