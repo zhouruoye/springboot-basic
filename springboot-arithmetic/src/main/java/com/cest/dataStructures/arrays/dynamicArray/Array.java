@@ -44,6 +44,15 @@ public class Array<E> {
         add(0, e);
     }
 
+    public void swap(int i, int j){
+        if(i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is illegal.");
+
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
+    }
+
     // 获取index索引位置的元素
     public E get(int index) {
         if (index < 0 || index > size)

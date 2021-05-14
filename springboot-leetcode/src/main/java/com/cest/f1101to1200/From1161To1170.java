@@ -1,9 +1,9 @@
-package com.cest.f1100to1200;
+package com.cest.f1101to1200;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class From1160To1170 {
+public class From1161To1170 {
 
     public static void main(String[] args) {
         String keyboard = "pqrstuvwxyzabcdefghijklmno";

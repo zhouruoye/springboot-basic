@@ -1,9 +1,9 @@
-package com.cest.f700to800;
+package com.cest.f701to800;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class From760To770 {
+public class From751To760 {
 
     public static void main(String[] args) {
         anagramMappings(new int[]{12, 28, 46, 32, 50},new int[]{50, 12, 32, 46, 28});

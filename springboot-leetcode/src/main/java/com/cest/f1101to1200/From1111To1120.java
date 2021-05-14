@@ -1,6 +1,6 @@
-package com.cest.f1100to1200;
+package com.cest.f1101to1200;
 
-public class From1110To1120 {
+public class From1111To1120 {
 
     public static void main(String[] args) {
         System.out.println(removeVowels("leetcodeisacommunityforcoders"));
