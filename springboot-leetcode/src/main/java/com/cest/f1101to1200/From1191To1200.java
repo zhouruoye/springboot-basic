@@ -5,8 +5,13 @@ import java.util.Arrays;
 public class From1191To1200 {
 
     public static void main(String[] args) {
-        int[] arr = new int[]{900,950,800,1000,700,800};
-        System.out.println(maxNumberOfApples(arr));
+//        1196. 最多可以买到的苹果数量
+//        int[] arr = new int[]{900,950,800,1000,700,800};
+//        System.out.println(maxNumberOfApples(arr));
+
+//        1099. 小于 K 的两数之和
+        int[] arr = new int[]{34,23,1,24,75,33,54,8};
+        twoSumLessThanK(arr,60);
     }
 
     /**
@@ -33,5 +38,40 @@ public class From1191To1200 {
         }
 
         return arr.length;
+    }
+
+    /**
+     * 1099. 小于 K 的两数之和
+     * 示例 1：
+     * 输入：nums = [34,23,1,24,75,33,54,8], k = 60
+     * 输出：58
+     * 解释：
+     * 34 和 24 相加得到 58，58 小于 60，满足题意。
+     * 示例 2：
+     * 输入：nums = [10,20,30], k = 15
+     * 输出：-1
+     * 解释：
+     * 我们无法找到和小于 15 的两个元素。
+     * @param nums
+     * @param k
+     * @return
+     */
+    public static int twoSumLessThanK(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int start = 0;
+        int end = nums.length - 1;
+
+        int res = -1;
+
+        while(start < end) {
+            if(nums[start] + nums[end] >= k) {
+                end--;
+            } else {
+                res = Math.max(res,nums[start] + nums[end]);
+                start ++;
+            }
+        }
+        return res;
     }
 }
