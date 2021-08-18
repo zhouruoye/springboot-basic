@@ -4,6 +4,7 @@ package com.cest.design.behavioral.chainofresponsibility.demo1;
  * 批准抽象类
  */
 public abstract class Approver {
+
     protected Approver approver;
 
     public void setNextApprover(Approver approver){
