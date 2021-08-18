@@ -1,4 +1,4 @@
-package com.cest.design.ctreational.prototype;
+package com.cest.design.ctreational.prototype.animal;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.cest.design.ctreational.builder;
+package com.cest.design.ctreational.builder.course;
 
 /**
  * Created by cestlavie on 2019/10/16.

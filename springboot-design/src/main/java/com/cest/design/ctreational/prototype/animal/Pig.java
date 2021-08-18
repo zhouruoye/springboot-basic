@@ -1,12 +1,13 @@
-package com.cest.design.ctreational.prototype;
+package com.cest.design.ctreational.prototype.animal;
 
+import java.io.*;
 import java.util.Date;
 
 /**
  * 浅拷贝
  * Created by cestlavie on 2019/10/16.
  */
-public class Pig implements Cloneable{
+public class Pig implements Cloneable, Serializable {
 
     private String name;
     private Date birthday;
@@ -14,6 +15,26 @@ public class Pig implements Cloneable{
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    /**
+     * 深拷贝 序列号流
+     * @return
+     */
+    public Pig deepClone() {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+
+            return (Pig)ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Pig(String name, Date birthday) {

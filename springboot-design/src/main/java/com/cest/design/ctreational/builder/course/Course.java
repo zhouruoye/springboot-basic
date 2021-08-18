@@ -1,4 +1,4 @@
-package com.cest.design.ctreational.builder;
+package com.cest.design.ctreational.builder.course;
 
 /**
  * 课程类
