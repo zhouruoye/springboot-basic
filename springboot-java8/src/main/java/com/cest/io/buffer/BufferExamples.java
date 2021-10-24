@@ -1,9 +1,15 @@
 package com.cest.io.buffer;
 
+import javafx.scene.shape.Path;
+
 import java.io.*;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousChannel;
+import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.FileChannel;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Random;
 
 public class BufferExamples {
@@ -52,18 +58,27 @@ public class BufferExamples {
         System.out.println((System.currentTimeMillis() - startTime));
     }
 
+    /**
+     * buffer读取
+     * @throws IOException
+     */
     public static void readFile_withbuffer() throws IOException {
-        BufferedInputStream fin = new BufferedInputStream(new FileInputStream(WORD));
+        InputStream fin = new BufferedInputStream(new FileInputStream(WORD));
         int b;
         long startTime = System.currentTimeMillis();
-        while ((b = fin.read()) != -1) {
+
+        byte[] bytes = new byte[4 * 1024];
+        while ((b = fin.read(bytes)) != -1) {
 
         }
         fin.close();
         System.out.println((System.currentTimeMillis() - startTime));
     }
 
-
+    /**
+     * NIO读取
+     * @throws IOException
+     */
     public static void readFile_NIO() throws IOException {
         FileChannel channel = new FileInputStream(WORD).getChannel();
         ByteBuffer allocate = ByteBuffer.allocate(8 * 1024);
@@ -75,7 +90,10 @@ public class BufferExamples {
             allocate.clear();
         }
         System.out.println((System.currentTimeMillis() - startTime));
+    }
 
+    public static void readFile_async() throws IOException {
+        AsynchronousFileChannel.open(Paths.get(WORD), StandardOpenOption.READ);
     }
 
     public static void main(String[] args) throws IOException {
@@ -83,7 +101,7 @@ public class BufferExamples {
 //        writeFile_withBuffer();
 //        readFile();
         readFile_withbuffer();
-        readFile_NIO();
+//        readFile_NIO();
 //        File file = new File("word");
 //        if(file.exists()) {
 //            file.delete();
