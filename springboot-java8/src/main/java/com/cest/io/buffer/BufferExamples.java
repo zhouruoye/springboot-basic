@@ -1,16 +1,19 @@
 package com.cest.io.buffer;
 
-import javafx.scene.shape.Path;
-
-import java.io.*;
-import java.nio.Buffer;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousChannel;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BufferExamples {
 
@@ -100,11 +103,14 @@ public class BufferExamples {
 //        writeFile();
 //        writeFile_withBuffer();
 //        readFile();
-        readFile_withbuffer();
+//        readFile_withbuffer();
 //        readFile_NIO();
 //        File file = new File("word");
 //        if(file.exists()) {
 //            file.delete();
 //        }
+
+        String collect = Stream.of("1", "1", "3").distinct().collect(Collectors.joining(","));
+        System.out.println(collect);
     }
 }

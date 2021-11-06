@@ -5,10 +5,12 @@ import java.util.Set;
 
 public class From1To10 {
 
-    public static void main(String[] args) {
-        int abcabcbb = lengthOfLongestSubstring("au");
+    String ans = "";
 
-        System.out.println(abcabcbb);
+    public static void main(String[] args) {
+//        int abcabcbb = lengthOfLongestSubstring("au");
+        String babad = longestPalindrome("cbbd");
+        System.out.println(babad);
     }
 
     /**
@@ -52,5 +54,37 @@ public class From1To10 {
             set.add(s.substring(i, i + 1));
         }
         return length == set.size();
+    }
+
+
+    /**
+     * todo 5. 最长回文子串
+     * 输入：s = "babad"
+     * 输出："bab"
+     * 解释："aba" 同样是符合题意的答案。
+     * 解题思路 去掉头尾 每个字符找最长回文串
+     */
+    public static String longestPalindrome(String s) {
+
+        if (s.length() < 1) return "";
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expand(s, i, i);
+            int len2 = expand(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    public static int expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
     }
 }
