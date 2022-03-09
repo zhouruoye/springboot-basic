@@ -13,8 +13,7 @@ public class ReadFile {
     }
 
     public static void main(String[] args) throws IOException {
-//        readfile("E:\\file\\专栏\\极客");
-
+        readfile("E:\\file\\专栏\\极客");
     }
 
     /**
@@ -44,10 +43,10 @@ public class ReadFile {
                         if(name.endsWith(".m4a")) {
                             System.out.println("name=" + readfile.getName());
                             //删除结尾为m4a的文件
-//                            readfile.delete();
+                            readfile.delete();
                         } else if(name.endsWith(".mp3")) {
                             System.out.println("name=" + readfile.getName());
-//                            readfile.delete();
+                            readfile.delete();
                         }
 
                     } else if (readfile.isDirectory()) {
