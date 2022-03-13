@@ -18,7 +18,7 @@ public class JoinTest implements Runnable{
         log.info("start by: {}",name);
 
         try {
-            TimeUnit.SECONDS.sleep(4);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
