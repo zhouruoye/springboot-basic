@@ -1,7 +1,6 @@
 package com.cest.service.template;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -19,7 +18,10 @@ public abstract class NetMall {
      * @param skuUrl 商品地址(京东、淘宝、当当)
      * @return 海报图片base64位信息
      */
-    public String generateGoodsPoster(String skuUrl) {
+    public String generateGoodsPoster(String skuUrl,String uId,String pwd) {
+        if(!login(uId,pwd)) {
+            return null;
+        }
         Map<String, String> reptile = reptile(skuUrl);  // 2. 爬虫商品
         return createBase64(reptile);                   // 3. 组装海报
     }

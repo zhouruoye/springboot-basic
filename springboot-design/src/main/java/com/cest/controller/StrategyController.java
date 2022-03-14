@@ -5,9 +5,11 @@ import com.cest.service.strategy.impl.SimpleContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/strategy")
+@RestController
+@RequestMapping(value = "/api/strategy/", produces = "application/json;charset=utf-8")
 public class StrategyController {
 
     @Autowired

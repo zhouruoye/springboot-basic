@@ -17,7 +17,7 @@ public class ApiTest {
     @Test
     public void test_NetMall() {
         NetMall netMall = new DangDangNetMall();
-        String base64 = netMall.generateGoodsPoster("http://product.dangdang.com/1509704171.html");
+        String base64 = netMall.generateGoodsPoster("http://product.dangdang.com/1509704171.html","zhangsan","123456");
         log.info("测试结果：{}", base64);
     }
 }
