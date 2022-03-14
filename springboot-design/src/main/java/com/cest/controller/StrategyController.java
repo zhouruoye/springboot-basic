@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 策略模式
+ */
 @RestController
 @RequestMapping(value = "/api/strategy/", produces = "application/json;charset=utf-8")
 public class StrategyController {
