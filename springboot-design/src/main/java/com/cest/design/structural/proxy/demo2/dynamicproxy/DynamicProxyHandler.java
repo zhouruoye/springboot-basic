@@ -1,6 +1,8 @@
 package com.cest.design.structural.proxy.demo2.dynamicproxy;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -10,6 +12,8 @@ import java.lang.reflect.Proxy;
  * Created by cestlavie on 2019/11/14.
  */
 @Slf4j
+@Component
+@Scope("prototype")
 public class DynamicProxyHandler implements InvocationHandler {
 
     private Object object;
@@ -26,6 +30,17 @@ public class DynamicProxyHandler implements InvocationHandler {
         return Proxy.newProxyInstance(cls.getClassLoader(),
                 cls.getInterfaces(),
                 this);
+    }
+
+    public Object bind(Object object){
+        this.object = object;
+        Class cls = object.getClass();
+        return Proxy.newProxyInstance(cls.getClassLoader(),
+                cls.getInterfaces(),
+                this);
+    }
+
+    public DynamicProxyHandler() {
     }
 
     public DynamicProxyHandler(Object o) {

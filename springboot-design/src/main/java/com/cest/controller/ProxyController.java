@@ -1,8 +1,11 @@
 package com.cest.controller;
 
 
+import com.cest.design.structural.proxy.demo2.cglibproxy.CglibProxy;
+import com.cest.design.structural.proxy.demo2.dynamicproxy.DynamicProxyHandler;
 import com.cest.design.structural.proxy.demo2.entity.Empe;
 import com.cest.service.proxy.EmpeService;
+import com.cest.service.proxy.impl.EmpeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +24,33 @@ public class ProxyController {
     @Autowired
     private EmpeService empeService;
 
-    @PostMapping("/send")
-    public String send(@RequestParam("id") String id) {
+    @Qualifier("empeServiceImpl")
+    @Autowired
+    private EmpeService empeServiceImpl;
+
+    @Autowired
+    private CglibProxy cglibProxy;
+
+    @Autowired
+    private DynamicProxyHandler dynamicProxyHandler;
+
+    @PostMapping("/cglibProxy")
+    public String cglibProxy(@RequestParam("id") String id) {
+        EmpeServiceImpl instance = (EmpeServiceImpl) cglibProxy.getInstance(empeServiceImpl);
+        instance.deleteEmpeById("1111");
+        return "success";
+    }
+
+    @PostMapping("/dynamicProxyHandler")
+    public String dynamicProxyHandler(@RequestParam("id") String id) {
+        EmpeService instance = (EmpeService) dynamicProxyHandler.bind(empeServiceImpl);
+        instance.deleteEmpeById("1111");
+        return "success";
+    }
+
+
+    @PostMapping("/staticProxy")
+    public String staticProxy(@RequestParam("id") String id) {
         empeService.addOneEmpe(Empe.builder()
                 .empeId(id)
                 .age(20)

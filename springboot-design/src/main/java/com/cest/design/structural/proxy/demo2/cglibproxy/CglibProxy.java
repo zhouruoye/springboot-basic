@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -18,6 +20,8 @@ import java.lang.reflect.Method;
  * Created by cestlavie on 2019/11/14.
  */
 @Slf4j
+@Component
+@Scope("prototype")
 public class CglibProxy implements MethodInterceptor {
 
     private Object object;
