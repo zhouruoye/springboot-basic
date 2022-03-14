@@ -1,9 +1,18 @@
 package com.cest;
 
+import com.cest.pojo.RebateInfo;
+import com.cest.service.adapter.MQAdapter;
+import com.cest.service.adapter.OrderAdapterService;
+import com.cest.service.adapter.impl.InsideOrderServiceImpl;
+import com.cest.service.adapter.impl.POPOrderAdapterServiceImpl;
 import com.cest.service.template.NetMall;
 import com.cest.service.template.impl.DangDangNetMall;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 
 @Slf4j
 public class ApiTest {
@@ -20,4 +29,15 @@ public class ApiTest {
         String base64 = netMall.generateGoodsPoster("http://product.dangdang.com/1509704171.html","zhangsan","123456");
         log.info("测试结果：{}", base64);
     }
+
+
+    @Test
+    public void test_itfAdapter() {
+        OrderAdapterService popOrderAdapterService = new POPOrderAdapterServiceImpl();
+        System.out.println("判断首单，接口适配(POP)：" + popOrderAdapterService.isFirst("100001"));
+
+        OrderAdapterService insideOrderService = new InsideOrderServiceImpl();
+        System.out.println("判断首单，接口适配(自营)：" + insideOrderService.isFirst("100001"));
+    }
+
 }
