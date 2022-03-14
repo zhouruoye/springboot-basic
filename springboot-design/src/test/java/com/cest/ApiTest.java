@@ -11,7 +11,7 @@ public class ApiTest {
     /**
      * 测试链接
      * 京东；https://item.jd.com/100008348542.html
-     * 淘宝；https://detail.tmall.com/item.htm
+     * 淘宝；https://detail.tmall.com/item.html
      * 当当；http://product.dangdang.com/1509704171.html
      */
     @Test

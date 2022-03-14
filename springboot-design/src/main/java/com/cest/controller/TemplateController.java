@@ -16,12 +16,15 @@ public class TemplateController {
     @Autowired
     private NetMall dangDangNetMall;
 
+    @Autowired
+    private NetMall taoBaoNetMall;
+
     @PostMapping("/geturl")
     public String geturl(@RequestParam("url") String url) {
         log.info("---------------发送url-------------", url);
         String uId = "zhangsan";
         String pwd = "123456";
-        dangDangNetMall.generateGoodsPoster(url, uId, pwd);
+        taoBaoNetMall.generateGoodsPoster(url, uId, pwd);
         return "success";
     }
 }
