@@ -43,5 +43,7 @@ public class JoinTest implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        log.info("sssssssss");
     }
 }

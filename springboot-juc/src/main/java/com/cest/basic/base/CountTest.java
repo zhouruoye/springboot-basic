@@ -5,12 +5,14 @@ package com.cest.basic.base;
  */
 public class CountTest {
 
-    private int count = 0;
+    private volatile int count = 0;
 
     private void addLargeNumber() {
         int idx = 0;
         while(idx++ < 1000000) {
-            count ++;
+            synchronized (this) {
+                count ++;
+            }
         }
     }
 
