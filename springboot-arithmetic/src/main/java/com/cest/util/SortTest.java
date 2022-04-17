@@ -8,10 +8,6 @@ public class SortTest {
             Integer[] arr = ArrayGenerator.generateRandomArray(n,n);
 
             SortingHelper.sortTest("SelectionSort",arr);
-
         }
-
-
-
     }
 }

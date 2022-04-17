@@ -1,7 +1,5 @@
 package com.cest;
 
-import com.cest.pojo.RebateInfo;
-import com.cest.service.adapter.MQAdapter;
 import com.cest.service.adapter.OrderAdapterService;
 import com.cest.service.adapter.impl.InsideOrderServiceImpl;
 import com.cest.service.adapter.impl.POPOrderAdapterServiceImpl;
@@ -9,10 +7,6 @@ import com.cest.service.template.NetMall;
 import com.cest.service.template.impl.DangDangNetMall;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 
 @Slf4j
 public class ApiTest {

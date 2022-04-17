@@ -1,5 +1,8 @@
 package com.cest.basic.base;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * 多线程读取缓存导致数据不一致
  */
@@ -17,6 +20,8 @@ public class CountTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        Lock reentrantLock = new ReentrantLock();
+
         CountTest test = new CountTest();
         Thread thread1 = new Thread(() -> {
             test.addLargeNumber();
