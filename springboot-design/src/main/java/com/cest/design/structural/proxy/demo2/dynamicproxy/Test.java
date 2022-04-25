@@ -2,7 +2,6 @@ package com.cest.design.structural.proxy.demo2.dynamicproxy;
 
 import com.cest.design.structural.proxy.demo2.component.EmpeService;
 import com.cest.design.structural.proxy.demo2.component.EmpeServiceImpl;
-import com.cest.design.structural.proxy.demo2.entity.Empe;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -19,10 +18,10 @@ public class Test {
         empeService1.deleteEmpeById("1111");
 
 
-        empeService1.addOneEmpe(Empe.builder()
-                .empeId("123")
-                .name("张三")
-                .age(13)
-                .build());
+//        empeService1.addOneEmpe(Empe.builder()
+//                .empeId("123")
+//                .name("张三")
+//                .age(13)
+//                .build());
     }
 }

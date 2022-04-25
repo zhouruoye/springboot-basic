@@ -9,7 +9,7 @@ public class Client1 {
         Socket socket = null;
         PrintWriter out = null;
         try {
-            socket = new Socket("127.0.0.1", 8080);
+            socket = new Socket("127.0.0.1", 10086);
             out = new
                     PrintWriter(socket.getOutputStream(), true);
             out.println("Hello, Mic");
