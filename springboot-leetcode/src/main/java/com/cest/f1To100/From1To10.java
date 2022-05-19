@@ -33,10 +33,13 @@ public class From1To10 {
 //        ListNode listNode = f.addTwoNumbers(h1, h2);
 //        System.out.println(listNode);
 
-        int[] ints1 = {1,2};
-        int[] ints2 = {3,4};
-        double medianSortedArrays = findMedianSortedArrays(ints1, ints2);
-        System.out.println(medianSortedArrays);
+//        int[] ints1 = {1,2};
+//        int[] ints2 = {3,4};
+//        double medianSortedArrays = findMedianSortedArrays(ints1, ints2);
+//        System.out.println(medianSortedArrays);
+
+        int[] ints1 = {1,8,6,2,5,4,8,3,7};
+        System.out.println(maxArea(ints1));
 
     }
 
@@ -249,5 +252,37 @@ public class From1To10 {
             right++;
         }
         return right - left - 1;
+    }
+
+    /**
+     * 10 给定一个长度为 n 的整数数组height。有n条垂线，第 i 条线的两个端点是(i, 0)和(i, height[i])。
+     * 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+     * 返回容器可以储存的最大水量。
+     * 输入：[1,8,6,2,5,4,8,3,7]
+     * 输出：49
+     * 解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为49。
+     * 双指针法
+     * @param height
+     * @return
+     */
+    public static int maxArea(int[] height) {
+        if(height == null || height.length == 1) {
+            return 0;
+        }
+
+        int start = 0;
+        int end = height.length - 1;
+
+        int max = 0;
+
+        while(start != end) {
+            max = Math.max(Math.min(height[start],height[end]) * (end - start),max);
+            if(height[start] < height[end]) {
+                start ++;
+            } else {
+                end --;
+            }
+        }
+        return max;
     }
 }
