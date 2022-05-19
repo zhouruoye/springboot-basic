@@ -13,7 +13,7 @@ public class ReadFile {
     }
 
     public static void main(String[] args) throws IOException {
-        readfile("E:\\file\\专栏\\极客");
+        readfile("D:\\study\\111");
     }
 
     /**

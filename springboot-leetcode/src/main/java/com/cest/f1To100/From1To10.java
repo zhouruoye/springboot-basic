@@ -17,21 +17,27 @@ public class From1To10 {
 //        String babad = longestPalindrome("cbbd");
 //        System.out.println(babad);
 
-        int[] ints = {2, 7, 11, 15};
-        int[] ints1 = twoSum1(ints, 9);
-        System.out.println(1);
+//        int[] ints = {2, 7, 11, 15};
+//        int[] ints1 = twoSum1(ints, 9);
+//        System.out.println(1);
+//
+//        ListNode h1 = new ListNode(2);
+//        h1.next = new ListNode(4);
+//        h1.next.next = new ListNode(3);
+//
+//        ListNode h2 = new ListNode(5);
+//        h2.next = new ListNode(6);
+//        h2.next.next = new ListNode(4);
+//
+//
+//        ListNode listNode = f.addTwoNumbers(h1, h2);
+//        System.out.println(listNode);
 
-        ListNode h1 = new ListNode(2);
-        h1.next = new ListNode(4);
-        h1.next.next = new ListNode(3);
+        int[] ints1 = {1,2};
+        int[] ints2 = {3,4};
+        double medianSortedArrays = findMedianSortedArrays(ints1, ints2);
+        System.out.println(medianSortedArrays);
 
-        ListNode h2 = new ListNode(5);
-        h2.next = new ListNode(6);
-        h2.next.next = new ListNode(4);
-
-
-        ListNode listNode = f.addTwoNumbers(h1, h2);
-        System.out.println(listNode);
     }
 
     /**
@@ -154,6 +160,63 @@ public class From1To10 {
             set.add(s.substring(i, i + 1));
         }
         return length == set.size();
+    }
+
+    /**
+     * 4 给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和nums2。请你找出并返回这两个正序数组的中位数 。
+     * 算法的时间复杂度应该为 O(log (m+n)) 。
+     * 输入：nums1 = [1,2], nums2 = [3,4]
+     * 输出：2.50000
+     * 解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
+     */
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int length1 = nums1.length;
+        int length2 = nums2.length;
+
+        if(length1 == 0 || length2 == 0) {
+            return length1 == 0 ? gethalfNum(nums2) : gethalfNum(nums1);
+        }
+
+        int totallength = length1 + length2;
+        int i = 0,j = 0;
+        int count = 0;
+        int[] newNums = new int[totallength];
+
+        while (totallength != (i + j)) {
+            if(i == length1) {
+                while (j != length2) {
+                    newNums[count++] = nums2[j++];
+                }
+                break;
+            }
+
+            if(j == length2) {
+                while (i != length1) {
+                    newNums[count++] = nums1[i++];
+                }
+                break;
+            }
+
+            if (nums1[i] < nums2[j]) {
+                newNums[count++] = nums1[i++];
+            } else {
+                newNums[count++] = nums2[j++];
+            }
+        }
+
+        return gethalfNum(newNums);
+    }
+
+    //获取中位数
+    private static double gethalfNum(int[] res) {
+        int n = res.length;
+        if(n == 0) {
+            return 0;
+        }
+        int a = res[(int) Math.round((double) n / 2 - 1)];
+        int b = res[(int) Math.round((double) (n -1) / 2)];
+
+        return (double) (a + b) / 2;
     }
 
 
