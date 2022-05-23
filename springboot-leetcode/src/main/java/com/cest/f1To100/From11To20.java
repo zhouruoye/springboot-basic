@@ -1,15 +1,17 @@
 package com.cest.f1To100;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 public class From11To20 {
 
     public static void main(String[] args) {
-        int[] nums = {-1,0,1,2,-1,-4};
-        List<List<Integer>> lists = threeSum(nums);
-        System.out.println(lists);
+//        int[] nums = {-1,0,1,2,-1,-4};
+//        List<List<Integer>> lists = threeSum(nums);
+
+        List<String> list = letterCombinations("23");
+        System.out.println(1111);
     }
 
     /**
@@ -74,5 +76,69 @@ public class From11To20 {
             }
         }
         return list;
+    }
+
+    private String letterMap[] = {
+            " ",    //0
+            "",     //1
+            "abc",  //2
+            "def",  //3
+            "ghi",  //4
+            "jkl",  //5
+            "mno",  //6
+            "pqrs", //7
+            "tuv",  //8
+            "wxyz"  //9
+    };
+
+
+    /**
+     * 17. 电话号码的字母组合
+     * 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。
+     * 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+     * 示例 1：
+     * 输入：digits = "23"
+     * 输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
+     */
+    public static List<String> letterCombinations(String digits) {
+        List<String> list = new ArrayList<>();
+
+        if(digits == null || "".equals(digits)) {
+            return list;
+        }
+
+        Map<Character, String> phoneMap = new HashMap<Character, String>() {{
+            put('2', "abc");
+            put('3', "def");
+            put('4', "ghi");
+            put('5', "jkl");
+            put('6', "mno");
+            put('7', "pqrs");
+            put('8', "tuv");
+            put('9', "wxyz");
+        }};
+
+        //递归处理
+        addPhoneNums(digits,list,phoneMap,0,"");
+
+        return list;
+    }
+
+    private static void addPhoneNums(String digits, List<String> list, Map<Character, String> phoneMap, int index,String s) {
+        List<String> newlist = new ArrayList<>();
+
+        if(digits.length() == index) {
+            list.add(s);
+            return;
+        }
+
+        Character c = digits.charAt(index);
+
+        if(phoneMap.containsKey(c)) {
+            String key = phoneMap.get(c);
+            for (int i = 0; i < key.length(); i++) {
+                addPhoneNums(digits,list,phoneMap, index + 1,s + key.charAt(i));
+            }
+        }
     }
 }
