@@ -346,7 +346,6 @@ public class BST<E extends Comparable<E>> {
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
-
         bst.add(5);
         bst.add(7);
         bst.add(1);

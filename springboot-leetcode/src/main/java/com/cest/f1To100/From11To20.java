@@ -1,5 +1,6 @@
 package com.cest.f1To100;
 
+import com.cest.pojo.ListNode;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -10,7 +11,14 @@ public class From11To20 {
 //        int[] nums = {-1,0,1,2,-1,-4};
 //        List<List<Integer>> lists = threeSum(nums);
 
-        List<String> list = letterCombinations("23");
+//        List<String> list = letterCombinations("23");
+
+        ListNode h1 = new ListNode(2);
+        h1.next = new ListNode(4);
+        h1.next.next = new ListNode(3);
+
+        removeNthFromEnd(h1, 1);
+
         System.out.println(1111);
     }
 
@@ -29,13 +37,13 @@ public class From11To20 {
      * 当 sumsum == 00 时，nums[R]nums[R] == nums[R-1]nums[R−1] 则会导致结果重复，应该跳过，R--R−−
      * 时间复杂度：O(n^2)O(n
      * 2
-     *  )，nn 为数组长度
+     * )，nn 为数组长度
      */
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
 
         //如果为null 或者 小于3 则直接返回空
-        if(nums == null || nums.length < 3) {
+        if (nums == null || nums.length < 3) {
             return list;
         }
 
@@ -45,25 +53,25 @@ public class From11To20 {
 
         for (int i = 0; i < length; i++) {
             //如果当前数组大于0 直接退出
-            if(nums[i] > 0) {
+            if (nums[i] > 0) {
                 break;
             }
 
-            if(i > 0 && nums[i] == nums[i-1]) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue; // 去重
             }
 
-            int L = i+1;
-            int R = length-1;
+            int L = i + 1;
+            int R = length - 1;
 
-            while(L < R){
+            while (L < R) {
                 int sum = nums[i] + nums[L] + nums[R];
-                if(sum == 0){
-                    list.add(Arrays.asList(nums[i],nums[L],nums[R]));
-                    while (L<R && nums[L] == nums[L+1]) {
+                if (sum == 0) {
+                    list.add(Arrays.asList(nums[i], nums[L], nums[R]));
+                    while (L < R && nums[L] == nums[L + 1]) {
                         L++; // 去重
                     }
-                    while (L<R && nums[R] == nums[R-1]) {
+                    while (L < R && nums[R] == nums[R - 1]) {
                         R--; // 去重
                     }
                     L++;
@@ -78,19 +86,6 @@ public class From11To20 {
         return list;
     }
 
-    private String letterMap[] = {
-            " ",    //0
-            "",     //1
-            "abc",  //2
-            "def",  //3
-            "ghi",  //4
-            "jkl",  //5
-            "mno",  //6
-            "pqrs", //7
-            "tuv",  //8
-            "wxyz"  //9
-    };
-
 
     /**
      * 17. 电话号码的字母组合
@@ -103,7 +98,7 @@ public class From11To20 {
     public static List<String> letterCombinations(String digits) {
         List<String> list = new ArrayList<>();
 
-        if(digits == null || "".equals(digits)) {
+        if (digits == null || "".equals(digits)) {
             return list;
         }
 
@@ -119,26 +114,59 @@ public class From11To20 {
         }};
 
         //递归处理
-        addPhoneNums(digits,list,phoneMap,0,"");
+        addPhoneNums(digits, list, phoneMap, 0, "");
 
         return list;
     }
 
-    private static void addPhoneNums(String digits, List<String> list, Map<Character, String> phoneMap, int index,String s) {
+    private static void addPhoneNums(String digits, List<String> list, Map<Character, String> phoneMap, int index, String s) {
         List<String> newlist = new ArrayList<>();
 
-        if(digits.length() == index) {
+        if (digits.length() == index) {
             list.add(s);
             return;
         }
 
         Character c = digits.charAt(index);
 
-        if(phoneMap.containsKey(c)) {
+        if (phoneMap.containsKey(c)) {
             String key = phoneMap.get(c);
             for (int i = 0; i < key.length(); i++) {
-                addPhoneNums(digits,list,phoneMap, index + 1,s + key.charAt(i));
+                addPhoneNums(digits, list, phoneMap, index + 1, s + key.charAt(i));
             }
         }
     }
+
+    /**
+     * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+     * 输入：head = [1,2,3,4,5], n = 2
+     * 输出：[1,2,3,5]
+     */
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+
+        int nodeLength = getNodeLength(head);
+
+        ListNode cur = dummy;
+        for (int i = 1; i < nodeLength - n + 1; i++) {
+            cur = cur.next;
+        }
+
+        cur.next = cur.next.next;
+        return dummy.next;
+    }
+
+    //获取链表长度
+    public static int getNodeLength(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            ++length;
+            head = head.next;
+        }
+        return length;
+    }
+
+
 }
+
+
