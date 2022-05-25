@@ -3,7 +3,7 @@ package com.cest.f1To100;
 public class From61To70 {
 
     public static void main(String[] args) {
-        int i = climbStairs1(45);
+        int i = climbStairs2(45);
         System.out.println(i);
         //1836311903
     }
@@ -27,6 +27,11 @@ public class From61To70 {
         return climbStairs(n - 1) + climbStairs(n - 2);
     }
 
+    /**
+     * 空间 时间复杂度都是O（n）
+     * @param n
+     * @return
+     */
     public static int climbStairs1(int n) {
         if(n < 3) {
             return n;
@@ -43,5 +48,20 @@ public class From61To70 {
         return nums[n];
     }
 
+    //滚动数组 对于数字n 只会关系n-1 和 n-2的数据，空间复杂度O(1)
+    public static int climbStairs2(int n) {
+        if(n < 3) {
+            return n;
+        }
 
+        int[] nums = new int[3];
+        nums[1] = 1;
+        nums[2] = 2;
+
+        for (int i = 3; i <= n; i++) {
+            nums[i%3] = nums[(i-1)%3] + nums[(i-2)%3];
+        }
+
+        return nums[n%3];
+    }
 }
