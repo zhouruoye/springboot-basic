@@ -11,8 +11,15 @@ public class From1To10 {
 
     String ans = "";
 
+    static {
+        i = 0;
+    }
+
+    static int i = 1;
+
     public static void main(String[] args) {
-        From1To10 f = new From1To10();
+        System.out.println(i);
+//        From1To10 f = new From1To10();
 //        int abcabcbb = lengthOfLongestSubstring("au");
 //        String babad = longestPalindrome("cbbd");
 //        System.out.println(babad);
@@ -38,8 +45,8 @@ public class From1To10 {
 //        double medianSortedArrays = findMedianSortedArrays(ints1, ints2);
 //        System.out.println(medianSortedArrays);
 
-        int[] ints1 = {1,8,6,2,5,4,8,3,7};
-        System.out.println(maxArea(ints1));
+//        int[] ints1 = {1,8,6,2,5,4,8,3,7};
+//        System.out.println(maxArea(ints1));
 
     }
 
