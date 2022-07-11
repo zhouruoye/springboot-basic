@@ -1,6 +1,8 @@
 package com.niuke.huawei;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,8 +15,15 @@ public class From11To20 {
 //        test12();
 
 //        test13();
+        test14();
 
-        test15();
+//        test15();
+
+//        test17();
+
+//        test19();
+
+//        test20();
     }
 
     /**
@@ -76,11 +85,9 @@ public class From11To20 {
     public static void test13() {
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
-
         String[] s1 = s.split(" ");
         List<String> list = Arrays.asList(s1);
         Collections.reverse(list);
-
         String collect = list.stream().collect(Collectors.joining(" "));
         System.out.println(collect);
     }
@@ -117,18 +124,17 @@ public class From11To20 {
      * up
      */
     public static void test14() {
-        
-    }
-
-    public boolean compareString(String name1,String name2) {
-        int length1 = name1.length();
-        int length2 = name2.length();
-        int min = Math.min(length1, length2);
-        for (int i = 0; i < min; i++) {
-
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        List<String> list = new ArrayList<>();
+        for (Integer i = 0; i < Integer.valueOf(s); i++) {
+            list.add(sc.nextLine());
         }
+        list.sort(Comparator.comparing(String::toString));
 
-        return false;
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 
     /**
@@ -136,9 +142,9 @@ public class From11To20 {
      * 输入一个 int 型的正整数，计算出该 int 型数据在内存中存储时 1 的个数。
      * 数据范围：保证在 32 位整型数字范围内
      * 输入描述：
-     *  输入一个整数（int类型）
+     * 输入一个整数（int类型）
      * 输出描述：
-     *  这个数转换成2进制后，输出1的个数
+     * 这个数转换成2进制后，输出1的个数
      * 示例1
      * 输入：5
      * 输出：2
@@ -149,8 +155,8 @@ public class From11To20 {
         int count = 0;
 
         while (i > 0) {
-            if((i & 1) == 1) {
-                count ++;
+            if ((i & 1) == 1) {
+                count++;
             }
             i = i >> 1;
         }
@@ -190,6 +196,107 @@ public class From11To20 {
      * 最终坐标，以逗号分隔
      */
     public static void test17() {
-        String str = "A10";
+        String regex = "[ASWD][0-9]{1,2}";
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        List<String> list = new ArrayList<>();
+        String[] split = s.split(";");
+
+        for (int i = 0; i < split.length; i++) {
+            if (split[i].matches(regex)) {
+                list.add(split[i]);
+            }
+        }
+
+        int a = 0;
+        int b = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            String s1 = list.get(i);
+            String substring = s1.substring(0, 1);
+            if ("A".equals(substring)) {
+                a -= Integer.valueOf(s1.substring(1));
+            } else if ("D".equals(substring)) {
+                a += Integer.valueOf(s1.substring(1));
+            } else if ("S".equals(substring)) {
+                b -= Integer.valueOf(s1.substring(1));
+            } else {
+                b += Integer.valueOf(s1.substring(1));
+            }
+        }
+        System.out.println(a + "," + b);
+    }
+
+
+    public static void test19() {
+        Map<String, Integer> map = new LinkedHashMap<>();
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            String s = sc.nextLine();
+            String[] split = s.split("\\\\");
+            String realStr = dealWithStr(split[split.length - 1]);
+            if (map.containsKey(realStr)) {
+                map.put(realStr, map.get(realStr) + 1);
+            } else {
+                map.put(realStr, 1);
+            }
+        }
+        int rs = 0;
+        for (Map.Entry<String, Integer> it : map.entrySet()) {
+            if (map.size() - rs <= 8)
+                System.out.println(it.getKey() + " " + it.getValue());
+            rs++;
+        }
+    }
+
+    public static String dealWithStr(String str) {
+        String[] s = str.split(" ");
+        String s1 = s[0];
+        if (s1.length() <= 16) {
+            return str;
+        } else {
+            return s1.substring(s1.length() - 16) + " " + s[1];
+        }
+    }
+
+    public static void test20() {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNextLine()) {
+            String s = sc.nextLine();
+            System.out.println(checkValue(s));
+        }
+    }
+
+    public static String checkValue(String str) {
+        int length = str.length();
+        if (length < 8) {
+            return "NG";
+        }
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char c1 = str.charAt(i);
+            if ('A' <= c1 && c1 <= 'Z') {
+                a = 1;
+            } else if ('a' <= c1 && c1 <= 'b') {
+                b = 1;
+            } else if ('0' <= c1 && c1 <= '9') {
+                c = 1;
+            } else {
+                d = 1;
+            }
+        }
+        if (a + b + c + d < 3) {
+            return "NG";
+        }
+        for (int i = 3; i < length; i++) {
+            String substring = str.substring(i - 3, i);
+            if (str.replace(substring, "").length() + 3 != length) {
+                return "NG";
+            }
+        }
+        return "OK";
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.aop.scope.ScopedProxyUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class From1To10 {
 
@@ -17,7 +18,9 @@ public class From1To10 {
 
 //        test04();
 
-//        test06();
+//        test05();
+
+        test06();
 
 //        test07();
 
@@ -25,7 +28,7 @@ public class From1To10 {
 
 //        test09();
 
-        test10();
+//        test10();
     }
 
     /**
@@ -58,8 +61,7 @@ public class From1To10 {
     public static void test02() {
         Scanner sc = new Scanner(System.in);
         String next = sc.nextLine();
-        Scanner sc1 = new Scanner(System.in);
-        String target = sc1.nextLine();
+        String target = sc.nextLine();
 
         next = next.toLowerCase();
         int length1 = next.length();
@@ -83,12 +85,11 @@ public class From1To10 {
         int next = sc.nextInt();
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < next; i++) {
-            Scanner sc1 = new Scanner(System.in);
-            int number = sc1.nextInt();
+            int number = sc.nextInt();
             set.add(number);
         }
         List<Integer> integers = new ArrayList<>(set);
-        integers.stream().sorted((a,b) -> a.compareTo(b));
+        integers = integers.stream().sorted(Comparator.comparing(Integer::intValue)).collect(Collectors.toList());
         for (int i = 0; i < integers.size(); i++) {
             System.out.println(integers.get(i));
         }
@@ -113,8 +114,10 @@ public class From1To10 {
         //需要补0的长度
         String bu = "";
         int i = 8 - next.length() % 8;
-        for (int i1 = 0; i1 < i; i1++) {
-            bu += 0;
+        if(i < 8) {
+            for (int i1 = 0; i1 < i; i1++) {
+                bu += 0;
+            }
         }
 
         next = next + bu;
@@ -122,7 +125,7 @@ public class From1To10 {
         int splitTimes = next.length() / 8;
 
         for (int i1 = 0; i1 < splitTimes; i1++) {
-            System.out.println(next.substring(i1 * 8, (i1 + 1) * 8 - 1));
+            System.out.println(next.substring(i1 * 8, (i1 + 1) * 8));
         }
 
     }
@@ -142,7 +145,9 @@ public class From1To10 {
      * 输出：170
      */
     public static void test05() {
-
+        Scanner sc = new Scanner(System.in);
+        String next = sc.nextLine();
+        System.out.println(Integer.parseInt(next.substring(2,next.length()),16));
     }
 
     /**
@@ -162,10 +167,10 @@ public class From1To10 {
         int i = sc.nextInt();
 
         int num = 2;
-        List<Integer> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         while(i > 1 || i > num) {
             if(i % num == 0) {
-                list.add(num);
+                list.add(num + "");
                 i = i / num;
                 continue;
             }
@@ -177,8 +182,7 @@ public class From1To10 {
                 num = zhiShuBetweenNumber;
             }
         }
-
-        System.out.println(111);
+        System.out.println(list.stream().collect(Collectors.joining(" ")));
     }
 
     public static boolean isZhiShu(int number) {
@@ -193,6 +197,10 @@ public class From1To10 {
     public static int getZhiShuBetweenNumber(int num1,int num2) {
         if(num1 > num2) {
             return -1;
+        }
+
+        if(isZhiShu(num2)) {
+            return num2;
         }
 
         while(num1 < num2) {
@@ -252,22 +260,21 @@ public class From1To10 {
     public static void test08() {
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
-        Map<Integer,Integer> map = new HashMap<>();
+        Map<Integer,Integer> map = new TreeMap<>();
         for (int i1 = 0; i1 < i; i1++) {
-            Scanner scNew = new Scanner(System.in);
-            String s = scNew.nextLine();
-            String[] s1 = s.split(" ");
-            Integer integer1 = Integer.valueOf(s1[0]);
-            Integer integer2 = Integer.valueOf(s1[1]);
-            if(map.containsKey(integer1)) {
-                Integer integer = map.get(integer1);
-                map.put(integer1,integer2 + integer);
+            int key = sc.nextInt();
+            int value = sc.nextInt();
+            if(map.containsKey(key)) {
+                Integer integer = map.get(key);
+                map.put(key,value + integer);
             } else {
-                map.put(integer1,integer2);
+                map.put(key,value);
             }
         }
 
-        System.out.println(1111);
+        map.forEach((k,v)-> {
+            System.out.println(k + " " + v);
+        });
     }
 
     /**
@@ -303,7 +310,6 @@ public class From1To10 {
                 list.add(substring);
             }
         }
-
         System.out.println(str);
     }
 
